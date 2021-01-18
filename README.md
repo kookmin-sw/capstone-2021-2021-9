@@ -18,9 +18,8 @@
   - Theme Chooser에서 태마선택
   - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+**팀페이지 주소** -> https://github.com/kookmin-sw/capstone-2021-2021-9
 
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
 
 
 ## 내용에 아래와 같은 내용들을 추가하세요.
@@ -36,6 +35,11 @@
 ### 3. 팀 소개
 
 팀을 소개하세요.
+
+전현근
+김민주
+김찬민
+박하윤
 
 팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
 
