@@ -20,7 +20,7 @@
 
 **팀페이지 주소** -> https://github.com/kookmin-sw/capstone-2021-2021-9
 
-
+**관련 자료** -> https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing
 
 ## 내용에 아래와 같은 내용들을 추가하세요.
 
