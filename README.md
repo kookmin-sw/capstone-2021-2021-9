@@ -1,3 +1,4 @@
+[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=351593&assignment_repo_type=GroupAssignmentRepo)
 # Welcome to GitHub
 
 캡스톤 팀 생성을 축하합니다.
@@ -17,16 +18,30 @@
   - Theme Chooser에서 태마선택
   - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+**팀페이지 주소** -> https://github.com/kookmin-sw/capstone-2021-2021-9
 
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
-
+**관련 자료** -> https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing
 
 ## 내용에 아래와 같은 내용들을 추가하세요.
 
 ### 1. 프로잭트 소개
 
-프로젝트
+프로젝트 명: 냉장고를 지켜라(가제)  
+플랫폼: 모바일 어플리케이션(IOS/안드로이드)  
+타겟 소비자: 주부, 자취생, 식품 관리를 해야하는 자영업자, 건망증이 심한 사람  
+
+주요 기능
+- 1.현재 소유하고 있는 식품을 리스트로 정리  
+- 2.정리되어 있는 식품들의 유통기한이 임박하였을 시, 알림 기능  
+- 3.영수증 텍스트 인식을 통해 식품들 리스트로 정리하는데 편의성 제공  
+- 4.온라인 쇼핑몰 구매목록 인식을 통해 리스트로 정리하는데 편의성 제공  
+- 5.제품에 프린트 되어있는 유통기한 인식을 통해 유통기한 입력에 대한 편의성 제공    
+  
+유사 제품
+- Freeasy  
+- BEEP  
+- 유통기한 언제지?  
+
 
 ### 2. 소개 영상
 
@@ -35,6 +50,11 @@
 ### 3. 팀 소개
 
 팀을 소개하세요.
+
++ 전현근(20153224/팀장)  
++ 김민주(20163091)  
++ 김찬민(20163101)  
++ 박하윤(20163111)  
 
 팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
 
