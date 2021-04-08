@@ -19,6 +19,7 @@
 5. 제품에 프린트 되어있는 유통기한 인식을 통해 유통기한 입력에 대한 편의성 제공
 
 <img src = "docs/design/calendar_list.gif">
+<img src = "docs/design/guide.gif">
 **유사 제품**
 
 - Freeasy
