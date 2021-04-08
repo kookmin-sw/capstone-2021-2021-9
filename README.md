@@ -2,7 +2,7 @@
 
 [소개 페이지](https://kookmin-sw.github.io/capstone-2021-9/)
 
-
+[1. 프로젝트 소개](#프로젝트-소개)
 
 ### 프로젝트 소개
 
