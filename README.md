@@ -28,7 +28,7 @@
 
 - 전현근(20153224/팀장)
 
-<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="40%">
+<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="30%" align="center">
 
 ```
 프로젝트 매니징
@@ -36,7 +36,7 @@
 
 - 김민주(20163091)
 
-![김민주](docs/team_img/KakaoTalk_20210404_211047435_01.jpg)
+<img src = "docs/team_img/KakaoTalk_20210404_211047435_01.jpg" align="center">
 
 ```
 안드로이드 어플리케이션 개발
