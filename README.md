@@ -36,7 +36,7 @@
 
 - 김민주(20163091)
 
-<img src = "docs/team_img/KakaoTalk_20210404_211047435_01.jpg" width="80%">
+<img src = "docs/team_img/KakaoTalk_20210404_211047435_01.jpg" width="20%">
 
 ```
 안드로이드 어플리케이션 개발
