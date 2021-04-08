@@ -5,7 +5,7 @@
 * [프로젝트 소개](#프로젝트-소개)  
 * [디자인 이미지](#디자인-이미지)  
 * [팀원 소개](#팀-소개) 
-* [기타](#관련-자료)
+* [기타](#기타)
 
 ### 프로젝트 소개
 ![](/docs/readme/main_image.png)
@@ -43,7 +43,7 @@
 
 - 김민주(20163091)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_211047435_01.jpg" width="20%">
+![](/docs/team_img/KakaoTalk_20210404_211047435_01.jpg)
 
 ```
 Android 어플리케이션 개발
@@ -51,7 +51,7 @@ Android 어플리케이션 개발
 
 - 김찬민(20163101)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_210623886.jpg" width="20%">
+![](docs/team_img/KakaoTalk_20210404_210623886.jpg)
 
 ```
 IOS 어플리케이션 개발
@@ -59,7 +59,7 @@ IOS 어플리케이션 개발
 
 - 박하윤(20163111)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_210423322.jpg" width="20%">
+![](/docs/team_img/KakaoTalk_20210404_210423322.jpg)
 
 ```
 핵심 기능(기술) 개발
