@@ -1,3 +1,0 @@
-hello
-
-dear my friends
