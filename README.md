@@ -28,7 +28,7 @@
 
 - 전현근(20153224/팀장)
 
-<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="30%" align="center">
+<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="20%">
 
 ```
 프로젝트 매니징
@@ -36,7 +36,7 @@
 
 - 김민주(20163091)
 
-<img src = "docs/team_img/KakaoTalk_20210404_211047435_01.jpg" align="center">
+<img src = "docs/team_img/KakaoTalk_20210404_211047435_01.jpg" width="80%">
 
 ```
 안드로이드 어플리케이션 개발
@@ -44,7 +44,7 @@
 
 - 김찬민(20163101)
 
-![김찬민](/docs/team_img/KakaoTalk_20210404_210623886.jpg)
+<img src = "/docs/team_img/KakaoTalk_20210404_210623886.jpg" width="20%">
 
 ```
 IOS 어플리케이션 개발
@@ -52,7 +52,7 @@ IOS 어플리케이션 개발
 
 - 박하윤(20163111)
 
-![박하윤](/docs/team_img/KakaoTalk_20210404_210423322.jpg)
+<img src = "/docs/team_img/KakaoTalk_20210404_210423322.jpg" width="20%">
 
 ```
 핵심 기능(기술) 개발
