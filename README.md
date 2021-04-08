@@ -52,7 +52,7 @@ IOS 어플리케이션 개발
 
 - 박하윤(20163111)
 
-![%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%203d6a6d01a1784a08b6b3fe0b71514c5b/KakaoTalk_20210404_210423322.jpg](/team_image/KakaoTalk_20210404_210423322.jpg width="700" height="370")
+![%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%203d6a6d01a1784a08b6b3fe0b71514c5b/KakaoTalk_20210404_210423322.jpg](/team_image/KakaoTalk_20210404_210423322.jpg)
 
 ```
 핵심 기능(기술) 개발
