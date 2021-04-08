@@ -5,7 +5,7 @@
 * [프로젝트 소개](#프로젝트-소개)  
 * [디자인 이미지](#디자인-이미지)  
 * [팀원 소개](#팀-소개) 
-* [기타](#관련-자료)
+* [기타](#기타)
 
 ### 프로젝트 소개
 ![](docs/readme/main_image.png)
@@ -65,5 +65,5 @@ IOS 어플리케이션 개발
 핵심 기능(기술) 개발
 ```
 
-
+### 기타
 **관련 자료** -> [구글 드라이브 자료](https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing)
