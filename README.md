@@ -19,17 +19,11 @@
 5. 제품에 프린트 되어있는 유통기한 인식을 통해 유통기한 입력에 대한 편의성 제공
 
 
-Solarized dark             |  Solarized Ocean
+Solarized dark                    |Solarized Ocean
+:--------------------------------:|:------------------------:
 ![](docs/design/calendar_list.gif)|![](docs/design/guide.gif)
 
-<div class="row">
-  <div class="column">
-    <img src="docs/design/calendar_list.gif" style="width:20%">
-  </div>
-  <div class="column">
-    <img src="docs/design/guide.gif" style="width:20%">
-  </div>
-</div>
+
 
 **유사 제품**
 
