@@ -20,10 +20,10 @@
 
 <div class="row">
   <div class="column">
-    <img src = "docs/design/calendar_list.gif" alt="Snow" style="width:20%">
+    <img src = "docs/design/calendar_list.gif" width="20%">
   </div>
   <div class="column">
-    <img src = "docs/design/guide.gif" alt="Forest" style="width:20%">
+    <img src = "docs/design/guide.gif" width="20%">
   </div>
 </div>
 
