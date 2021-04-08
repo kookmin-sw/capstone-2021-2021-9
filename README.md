@@ -1,6 +1,6 @@
 # 냉장고를 지켜라!
 
-**팀페이지 주소** -> [https://github.com/kookmin-sw/capstone-2021-2021-9](https://github.com/kookmin-sw/capstone-2021-2021-9)
+**팀페이지 주소** -> [https://kookmin-sw.github.io/capstone-2021-9/](https://kookmin-sw.github.io/capstone-2021-9/)
 
 **관련 자료** -> [https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing](https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing)
 
