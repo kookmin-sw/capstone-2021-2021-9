@@ -8,7 +8,7 @@
 * [기타](#관련-자료)
 
 ### 프로젝트 소개
-![](docs/readme/main_image.png)
+![](/docs/readme/main_image.png)
 프로젝트 명: 냉장고를 지켜라  
 플랫폼: 모바일 어플리케이션(IOS/안드로이드)  
 타겟 소비자: 주부, 자취생, 식품 관리를 해야하는 자영업자, 건망증이 심한 사람 
@@ -26,7 +26,7 @@
 
 기본 가이드                        |달력, 리스트                       |검색                       |정보 확인                   |
 :--------------------------------:|:--------------------------------:|:-------------------------:|:-------------------------:|
-![](docs/design/guide.gif)        |![](docs/design/calendar_list.gif)|![](docs/design/search.gif)|![](docs/design/status.gif)
+![](/docs/design/guide.gif)        |![](/docs/design/calendar_list.gif)|![](/docs/design/search.gif)|![](/docs/design/status.gif)
 
 
 
