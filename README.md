@@ -28,7 +28,7 @@
 
 - 전현근(20153224/팀장)
 
-<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="40%")
+<img src = "/docs/team_img/KakaoTalk_20210409_000232109.jpg" width="40%">
 
 ```
 프로젝트 매니징
