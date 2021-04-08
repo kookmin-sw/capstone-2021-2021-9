@@ -18,6 +18,10 @@
 4. 온라인 쇼핑몰 구매목록 인식을 통해 리스트로 정리하는데 편의성 제공
 5. 제품에 프린트 되어있는 유통기한 인식을 통해 유통기한 입력에 대한 편의성 제공
 
+
+Solarized dark             |  Solarized Ocean
+![](docs/design/calendar_list.gif)|![](docs/design/guide.gif)
+
 <div class="row">
   <div class="column">
     <img src="docs/design/calendar_list.gif" style="width:20%">
