@@ -19,9 +19,9 @@
 5. 제품에 프린트 되어있는 유통기한 인식을 통해 유통기한 입력에 대한 편의성 제공
 
 
-Solarized dark                    |Solarized Ocean
+기본 가이드                        |달력, 리스트
 :--------------------------------:|:------------------------:
-![](docs/design/calendar_list.gif)|![](docs/design/guide.gif)
+![](docs/design/guide.gif)|![](docs/design/calendar_list.gif)
 
 
 
