@@ -1,8 +1,8 @@
 # 냉장고를 지켜라!
 
-**팀페이지 주소** -> [소개 페이지](https://kookmin-sw.github.io/capstone-2021-9/)
+[소개 페이지](https://kookmin-sw.github.io/capstone-2021-9/)
 
-**관련 자료** -> [구글 드라이브 자료](https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing)
+
 
 ### 1. 프로잭트 소개
 
@@ -65,3 +65,6 @@ IOS 어플리케이션 개발
 ```
 핵심 기능(기술) 개발
 ```
+
+
+**관련 자료** -> [구글 드라이브 자료](https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing)
