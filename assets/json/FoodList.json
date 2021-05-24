@@ -1,0 +1,28 @@
+{
+    "foods" : [
+        {
+            "Name": "\uc54c\ubc30\uae30",
+            "ExpirationDate": "2021-11-19"
+        },
+        {
+            "Name": "\ubc31\uc624\uc7741\ubd09",
+            "ExpirationDate": "2022-05-23"
+        },
+        {
+            "Name": "\uc554\ub3fc\uc9c0\uc81c\uc721\ubcf6\uc74c/\uc55e\ub2e4\ub9ac",
+            "ExpirationDate": "2022-05-23"
+        },
+        {
+            "Name": "\uc554\ub3fc\uc9c0\uc0dd\ubaa9\uc0b4",
+            "ExpirationDate": "2021-08-21"
+        },
+        {
+            "Name": "\uc218\uc785\uc6b0\uc0bc\uacb9\ub85c\uc2a4",
+            "ExpirationDate": "2022-03-19"
+        },
+        {
+            "Name": "\uc218\uc785\ub3fc\uc9c0\ub300\ud328\uc0bc\uacb9\uc0b4",
+            "ExpirationDate": "2021-07-07"
+        }
+    ]
+}
