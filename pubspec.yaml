@@ -1,4 +1,4 @@
-name: flutter_made
+name: flutter_demo_ver
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -23,12 +23,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  table_calendar: ^3.0.0
-
+  flutter_localizations:
+    sdk: flutter
+  cloud_firestore: ^1.0.7
+  flutter_svg: ^0.22.0
+  firebase_core: ^1.2.0
+  firebase_messaging: ^10.0.0
+  flutter_local_notifications: ^5.0.0+4
+  image_picker: ^0.7.5+2
+  http: ^0.13.3
+  dio: ^4.0.0
+#  firebase_storage: ^8.1.0
+#  google_sign_in: ^5.0.3
+#  firebase_auth: ^1.2.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_svg: ^0.17.4
+  table_calendar: ^3.0.0
+
 
 dev_dependencies:
   flutter_test:
