@@ -2,141 +2,120 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_demo_ver/table_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'Manage/food_list.dart';
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReadJson extends StatefulWidget {
   @override
   _ReadJsonState createState() => _ReadJsonState();
 }
 
-// final fServerURL = "http://10.0.2.2:5000/";
-
 class _ReadJsonState extends State<ReadJson> {
-//   final foodList = List<FoodList>();
-//
-//   Future fetch() async {
-//     String jsonString = await rootBundle.loadString('json/FoodList.json');
-//     final response = json.decode(jsonString);
-//     final jsonFood = response["foods"];
-//
-//     foodList.clear();
-//     jsonFood.forEach((e){
-//       foodList.add(FoodList.fromJson(e));
-//     });
-//   }
-  //
-  File _image;
-  final picker = ImagePicker();
+  final fList = List<FoodList>();
+  var isLoading = true;
+  // final QuerySnapshot result = await FirebaseFirestore.instance.collection('food');
+  
+  Future fetch() async {
+    setState(() {
+      isLoading = true;
+    });
 
-  Future _imgFromCamera() async {
-    var image = await picker.getImage(source: ImageSource.camera);
+    var fServerURL = Uri.parse('http://10.0.2.2:5000/');
+
+    var response = await http.get(fServerURL);
+
+    final jsonResult = jsonDecode(utf8.decode(response.bodyBytes));
+    final jsonFood = jsonResult['foods'];
 
     setState(() {
-      _image = File(image.path);
+      fList.clear();
+      jsonFood.forEach((e){
+        fList.add(FoodList.fromJson(e));
+      });
+      isLoading = false;
     });
   }
 
-  Future _imgFromGallery() async {
-    var image = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = File(image.path);
-    });
+  @override
+  void initState() {
+    super.initState();
+    fetch();
   }
 
-  void _showPicker(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return SafeArea(
-            child: Container(
-              child: new Wrap(
-                children: <Widget>[
-                  new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
-                      onTap: () {
-                        _imgFromGallery();
-                         Navigator.of(context).pop();
-                      }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
-                    onTap: () {
-                      _imgFromCamera();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 32,
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                _showPicker(context);
-              },
-              child: CircleAvatar(
-                radius: 55,
-                backgroundColor: Color(0xffFDCF09),
-                child: _image != null
-                    ? ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.file(
-                    _image,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.fitHeight,
-                  ),
-                )
-                    : Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(50)),
-                  width: 100,
-                  height: 100,
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.grey[800],
-                  ),
+      appBar: AppBar(
+        title : Text('새로 추가된 항목'),
+        actions: <Widget> [
+          new IconButton(
+            icon : new Icon(Icons.save),
+            onPressed: () {
+              setState(() {
+              });
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: Text("Saved."),
+                  actions: [
+                    TextButton(
+                        child : Text('확인'),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Tabless()));
+                        },
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          )
+              );
+            },
+          ),
+        ],
+      ),
+      body: isLoading
+          ? _LoadingWidget()
+          : _MakeListWidget()
+    );
+  }
+
+  Widget _MakeListWidget() {
+    return ListView(
+      children: fList.map((e) {
+        return ListTile(
+            title : Text(e.name),
+            subtitle: Text(e.expirationDate));
+      }).toList(),
+    );
+  }
+
+  Widget _LoadingWidget() {
+    return Center(
+      child : Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Loading', style: TextStyle(
+              fontSize: 40, fontWeight : FontWeight.bold),
+          ),
+          Text(' ', style: TextStyle(
+              fontSize: 40, fontWeight : FontWeight.bold),
+          ),
+          CircularProgressIndicator(),
         ],
       ),
     );
   }
+
+  // Widget _saveButton() {
+  //   return Center(
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[
   //
-  // @override
-  // Widget build(BuildContext) {
-  //   return Scaffold (
-  //     appBar : AppBar(
-  //       title : Text('Open'),
-  //     ),
-  //     body : Center(
-  //       child: RaisedButton(
-  //         onPressed: () async{
-  //           await fetch();
-  //           print(foodList.toString());
-  //         },
-  //         child: Text('Show'),
-  //       ),
+  //       ],
   //     ),
   //   );
+  //
   // }
 }

@@ -103,12 +103,15 @@ def create_app():
 
     # json 파일에 food_list, food_expiration_date 저장
     food_data = {}
+    foods = []
     for i in range(len(food_list)):
-        food_data[i] = {"Name": food_list[i], "ExpirationDate": food_expiration_date[i].strftime('%Y-%m-%d')}
+        foods.append({"ExpirationDate": food_expiration_date[i].strftime('%Y-%m-%d'), "Name": food_list[i]})
+        print(foods)
+    food_data["foods"] = foods
 
     print(food_data)
 
     with open("FoodList.json", "w") as json_file:
-        json.dump(food_data, json_file, indent=4)
+        json.dump(food_data, json_file, indent=4, sort_keys=True, default=str)
 
     return food_data
