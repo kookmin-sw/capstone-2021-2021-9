@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_ver/Manage/constants.dart';
 import 'package:flutter_demo_ver/main.dart';
-import 'package:flutter_demo_ver/read_pic.dart';
+import 'package:flutter_demo_ver/read_json.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_demo_ver/Manage/event.dart';
+import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart' as path;
 
@@ -27,6 +27,7 @@ class _TableList extends State<Tabless> {
 
   File _image;
   final picker = ImagePicker();
+  var state = false;
 
   Future _imgFromCamera() async {
     var image = await picker.getImage(source: ImageSource.camera);
@@ -38,30 +39,38 @@ class _TableList extends State<Tabless> {
     });
 
     String fileName = path.basename(_image.path);
-    String newPath = path.join(fileName, 'receipt.jpg');
-    _image.renameSync(newPath);
-    String receipt = path.basename(_image.path);
+    String making = path.join(fileName, 'receipt.jpg');
+    String receipt = path.basename(making);
 
     firebase_storage.FirebaseStorage.instance
         .ref('$receipt')
         .putFile(_image);
+
+    setState(() {
+        state = true;
+    });
   }
 
   Future _imgFromGallery() async {
     var image = await picker.getImage(source: ImageSource.gallery);
+
+    if (image == null) return;
 
     setState(() {
       _image = File(image.path);
     });
 
     String fileName = path.basename(_image.path);
-    String newPath = path.join(fileName, 'receipt.jpg');
-    _image.renameSync(newPath);
-    String receipt = path.basename(_image.path);
+    String making = path.join(fileName, 'receipt.jpg');
+    String receipt = path.basename(making);
 
     firebase_storage.FirebaseStorage.instance
         .ref('$receipt')
         .putFile(_image);
+
+    setState(() {
+      state = true;
+    });
   }
 
   @override
@@ -94,8 +103,9 @@ class _TableList extends State<Tabless> {
                     title: new Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
-                      Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(
+                      state
+                          ? Navigator.pop(context)
+                          :Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) => ReadJson()));
                     },
                   ),
@@ -104,8 +114,9 @@ class _TableList extends State<Tabless> {
                       title: new Text('Photo Library'),
                       onTap: () {
                         _imgFromGallery();
-                        Navigator.pop(context);
-                        Navigator.of(context).push(MaterialPageRoute(
+                        state
+                            ? Navigator.pop(context)
+                            :Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) => ReadJson()));
                       }),
                 ],
