@@ -45,29 +45,6 @@ class _ReadJsonState extends State<ReadJson> {
     return Scaffold(
       appBar: AppBar(
         title : Text('새로 추가된 항목'),
-        actions: <Widget> [
-          new IconButton(
-            icon : new Icon(Icons.save),
-            onPressed: () {
-              setState(() {
-              });
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text("Saved."),
-                  actions: [
-                    TextButton(
-                        child : Text('확인'),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Tabless()));
-                        },
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
       ),
       body: isLoading
           ? _LoadingWidget()
@@ -90,8 +67,8 @@ class _ReadJsonState extends State<ReadJson> {
       child : Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Loading', style: TextStyle(
-              fontSize: 40, fontWeight : FontWeight.bold),
+          Text('영수증에서 식품만 불러오는 중입니다.', style: TextStyle(
+              fontSize: 20, fontWeight : FontWeight.bold),
           ),
           Text(' ', style: TextStyle(
               fontSize: 40, fontWeight : FontWeight.bold),
