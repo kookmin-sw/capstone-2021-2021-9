@@ -13,12 +13,21 @@ import openpyxl
 import datetime
 from datetime import timedelta
 from flask import Flask
+import pandas as pd
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
 def create_app():
+
+    cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://test-db-56a02.firebaseio.com/'
+    })
+
     api_url = 'https://eb2d4e564180412f954fb063cab4dd74.apigw.ntruss.com/custom/v1/8817/2146ec66fc0afc1f046ae6b62726734a605584c4e5ceb14af3f120fd68d5ba78/document/receipt'
     secret_key = 'bFhrYUVqa0Vma1dGZWJPS3lGanBNbHBPWURJeFZ1bFc='
     image_file = 'receipt.jpg'  # 내장된 사진 사용
@@ -113,14 +122,7 @@ def create_app():
     with open("FoodList.json", "w") as json_file:
         json.dump(food_data, json_file, indent=4, sort_keys=True, default=str)
 
-    import pandas as pd
-    import firebase_admin
-    from firebase_admin import credentials, firestore
-
-    cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
-    firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://test-db-56a02.firebaseio.com/'
-    })
+    # export json to firestore.
 
     db = firestore.client()
     doc_ref = db.collection(u'food')

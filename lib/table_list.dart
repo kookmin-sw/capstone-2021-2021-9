@@ -8,8 +8,8 @@ import 'package:flutter_demo_ver/Manage/event.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:path/path.dart' as path;
 
 class Tabless extends StatefulWidget {
   @override
@@ -24,20 +24,26 @@ class _TableList extends State<Tabless> {
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
 
-  // final fServerURL = "http://10.0.2.2:5000/";
-
   File _image;
   final picker = ImagePicker();
 
   Future _imgFromCamera() async {
     var image = await picker.getImage(source: ImageSource.camera);
 
+    if (image == null) return;
+
     setState(() {
       _image = File(image.path);
     });
 
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => ReadJson()));
+    String fileName = path.basename(_image.path);
+    String newPath = path.join(fileName, 'receipt.jpg');
+    _image.renameSync(newPath);
+    String receipt = path.basename(_image.path);
+
+    firebase_storage.FirebaseStorage.instance
+        .ref('$receipt')
+        .putFile(_image);
   }
 
   Future _imgFromGallery() async {
@@ -46,9 +52,15 @@ class _TableList extends State<Tabless> {
     setState(() {
       _image = File(image.path);
     });
-    //
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => ReadJson()));
+
+    String fileName = path.basename(_image.path);
+    String newPath = path.join(fileName, 'receipt.jpg');
+    _image.renameSync(newPath);
+    String receipt = path.basename(_image.path);
+
+    firebase_storage.FirebaseStorage.instance
+        .ref('$receipt')
+        .putFile(_image);
   }
 
   @override
@@ -77,20 +89,24 @@ class _TableList extends State<Tabless> {
               child: new Wrap(
                 children: <Widget>[
                   new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
-                      onTap: () {
-                        _imgFromGallery();
-                        Navigator.pop(context);
-                      }),
-                  new ListTile(
                     leading: new Icon(Icons.photo_camera),
                     title: new Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
                       Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => ReadJson()));
                     },
                   ),
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.pop(context);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => ReadJson()));
+                      }),
                 ],
               ),
             ),
