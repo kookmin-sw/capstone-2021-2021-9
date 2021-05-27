@@ -1,12 +1,8 @@
-import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_demo_ver/table_list.dart';
-import 'package:image_picker/image_picker.dart';
 import 'Manage/food_list.dart';
 import 'package:http/http.dart' as http;
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReadJson extends StatefulWidget {
   @override
@@ -16,7 +12,6 @@ class ReadJson extends StatefulWidget {
 class _ReadJsonState extends State<ReadJson> {
   final fList = List<FoodList>();
   var isLoading = true;
-  // final QuerySnapshot result = await FirebaseFirestore.instance.collection('food');
   
   Future fetch() async {
     setState(() {
@@ -106,16 +101,4 @@ class _ReadJsonState extends State<ReadJson> {
       ),
     );
   }
-
-  // Widget _saveButton() {
-  //   return Center(
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: <Widget>[
-  //
-  //       ],
-  //     ),
-  //   );
-  //
-  // }
 }
