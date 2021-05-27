@@ -290,7 +290,7 @@ class _TableList extends State<Tabless> {
               Container(
                 padding: EdgeInsets.only(left: 30),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                height: 100+(massageWis.length).toDouble()*100,
                 decoration: BoxDecoration(
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.only(
