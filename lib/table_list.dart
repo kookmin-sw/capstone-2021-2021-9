@@ -103,9 +103,8 @@ class _TableList extends State<Tabless> {
                     title: new Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
-                      state
-                          ? Navigator.pop(context)
-                          :Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) => ReadJson()));
                     },
                   ),
@@ -114,9 +113,8 @@ class _TableList extends State<Tabless> {
                       title: new Text('Photo Library'),
                       onTap: () {
                         _imgFromGallery();
-                        state
-                            ? Navigator.pop(context)
-                            :Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.pop(context);
+                        Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) => ReadJson()));
                       }),
                 ],
