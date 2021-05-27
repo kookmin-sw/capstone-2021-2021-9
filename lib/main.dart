@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
+    return Scaffold(body: Column(
         children: <Widget>[
           Container(
             height: size.height,
@@ -148,6 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ]
+    ),
+
     );
   }
 }
