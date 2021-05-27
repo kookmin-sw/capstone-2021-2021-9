@@ -21,11 +21,11 @@ import pyrebase
 app = Flask(__name__)
 app.debug = True
 
+cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
+firebase_admin.initialize_app(cred, {'storageBucket': 'test-db-56a02.appspot.com'})
+
 @app.route('/')
 def create_app():
-
-    cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
-    firebase_admin.initialize_app(cred, {'storageBucket': 'test-db-56a02.appspot.com'})
 
     config = {
         "apiKey": "AIzaSyDi2m9Z1mgTroxLc1plqJyH8-_Gf6G74-4",
