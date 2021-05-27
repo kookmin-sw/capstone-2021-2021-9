@@ -21,7 +21,7 @@ app.debug = True
 def create_app():
     api_url = 'https://eb2d4e564180412f954fb063cab4dd74.apigw.ntruss.com/custom/v1/8817/2146ec66fc0afc1f046ae6b62726734a605584c4e5ceb14af3f120fd68d5ba78/document/receipt'
     secret_key = 'bFhrYUVqa0Vma1dGZWJPS3lGanBNbHBPWURJeFZ1bFc='
-    image_file = 'receipt2.jpg'  # 내장된 사진 사용
+    image_file = 'receipt.jpg'  # 내장된 사진 사용
 
     with open(image_file, 'rb') as f:
         file_data = f.read()
@@ -106,12 +106,27 @@ def create_app():
     foods = []
     for i in range(len(food_list)):
         foods.append({"ExpirationDate": food_expiration_date[i].strftime('%Y-%m-%d'), "Name": food_list[i]})
-        print(foods)
     food_data["foods"] = foods
 
     print(food_data)
 
     with open("FoodList.json", "w") as json_file:
         json.dump(food_data, json_file, indent=4, sort_keys=True, default=str)
+
+    import pandas as pd
+    import firebase_admin
+    from firebase_admin import credentials, firestore
+
+    cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://test-db-56a02.firebaseio.com/'
+    })
+
+    db = firestore.client()
+    doc_ref = db.collection(u'food')
+    # Import data
+    df = pd.read_json('FoodList.json')
+    tmp = df.to_dict(orient='records')
+    list(map(lambda x: doc_ref.add(x), tmp))
 
     return food_data
