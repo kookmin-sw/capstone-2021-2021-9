@@ -7,6 +7,9 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_demo_ver/Manage/event.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 class Tabless extends StatefulWidget {
   @override
@@ -20,6 +23,8 @@ class _TableList extends State<Tabless> {
   TextEditingController _eventController = TextEditingController();
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
+
+  // final fServerURL = "http://10.0.2.2:5000/";
 
   File _image;
   final picker = ImagePicker();
@@ -41,7 +46,7 @@ class _TableList extends State<Tabless> {
     setState(() {
       _image = File(image.path);
     });
-
+    //
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) => ReadJson()));
   }
@@ -49,6 +54,8 @@ class _TableList extends State<Tabless> {
   @override
   void initState() {
     selectedEvents = {};
+    selectedDay = DateTime.now();
+    focusedDay = DateTime.now();
     super.initState();
   }
 
@@ -74,12 +81,14 @@ class _TableList extends State<Tabless> {
                       title: new Text('Photo Library'),
                       onTap: () {
                         _imgFromGallery();
+                        Navigator.pop(context);
                       }),
                   new ListTile(
                     leading: new Icon(Icons.photo_camera),
                     title: new Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
+                      Navigator.pop(context);
                     },
                   ),
                 ],
@@ -138,7 +147,6 @@ class _TableList extends State<Tabless> {
             onPressed: (){
               print("Camera on.");
               _showPicker(context);
-
         }),
       ),
       body: _buildBody(context),
@@ -160,7 +168,7 @@ class _TableList extends State<Tabless> {
 
     List<Container> massageWis = [];
     for(var message in snapshot){
-      final messageWi = taskList(message.data()['name'],message.data()['num'].toDate().toString(),context);
+      final messageWi = taskList(message.data()['name'],DateFormat("yyyy-MM-dd").format(message.data()['num'].toDate()),context);
       massageWis.add(messageWi);
     }
 
@@ -302,7 +310,7 @@ class _TableList extends State<Tabless> {
                               )
                             ],
                           ),
-                        ),
+                        ), child: Icon(Icons.add),
                       ),
                     )
                   ],
