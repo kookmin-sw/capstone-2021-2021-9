@@ -22,10 +22,13 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-Future<void> showNotification(String helloo, int channelid) async{
+Future<void> showNotification(String helloo, int channelid, DateTime date) async{
   tz.initializeTimeZones();
   tz.setLocalLocation(tz.getLocation('Asia/Seoul'));
-  var currentDateTime = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5));
+
+  final now = tz.TZDateTime.now(tz.local);
+  var currentDateTime = tz.TZDateTime(tz.local, date.year, date.month, 28,
+      13, 57);
 
   var android = AndroidNotificationDetails(
       'channelId', 'channelName', 'channelDescription');
@@ -33,8 +36,8 @@ Future<void> showNotification(String helloo, int channelid) async{
   //await FlutterLocalNotificationsPlugin().show(0, 'title', 'body', platform);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(channelid,
-      helloo+channelid.toString(),
-      'hie',
+      "유통기한이 임박하였습니다."+ " "+channelid.toString(),
+      helloo,
       currentDateTime,
       platform,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
@@ -79,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences.setMockInitialValues({});
     super.initState();
   }
-
+  /*
   differentchannelnotification() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int counter = (prefs.getInt('counter') ?? 0) + 1;
@@ -88,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     showNotification("asdgaskjl", counter);
   }
+  */
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

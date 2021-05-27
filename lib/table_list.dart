@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_ver/Manage/constants.dart';
+import 'package:flutter_demo_ver/main.dart';
 import 'package:flutter_demo_ver/read_pic.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_demo_ver/Manage/event.dart';
@@ -170,25 +171,62 @@ class _TableList extends State<Tabless> {
 
   Widget _buildall(BuildContext context, List<DocumentSnapshot> snapshot){
     Size size = MediaQuery.of(context).size;
-
+    bool check = true;
+    String notification_string = "";
+    int notification_id;
     List<Container> massageWis = [];
     DateTime days;
+    String daysed;
     selectedEvents = {};
     snapshot.forEach((doc) {
       final messageWi = taskList(doc["foods"]["Name"].toString(),doc["foods"]["ExpirationDate"].toString(),context);
       massageWis.add(messageWi);
-
+      if(daysed == null){
+        daysed = doc["foods"]["ExpirationDate"];
+      }
       days = DateFormat('yyyy-MM-dd').parse(doc["foods"]["ExpirationDate"]);
 
       if (selectedEvents[days] != null) {
-        selectedEvents[days].add(Event(
-            title: doc["foods"]["Name"].toString(),id: doc.id));
+        selectedEvents[days].forEach((element) {
+          if(element.title == doc["foods"]["Name"].toString()){
+            check = false;
+            FirebaseFirestore.instance.collection('food').doc(doc.id).delete();
+          }
+        });
+        if(check){
+          selectedEvents[days].add(Event(
+              title: doc["foods"]["Name"].toString(),id: doc.id));
+        }
+        check = true;
       } else {
         selectedEvents[days] =
         [Event(title: doc["foods"]["Name"].toString(),id: doc.id)];
       }
 
+      if(days != DateFormat('yyyy-MM-dd').parse(daysed)){
+        selectedEvents[DateFormat('yyyy-MM-dd').parse(daysed)].forEach((element) {
+          if(notification_string == ""){
+            notification_string = notification_string + element.title;
+          }else{
+            notification_string = notification_string + ", " + element.title;
+          }
+        });
+        String namesss = daysed.replaceAll("-","");
+        showNotification(notification_string, int.parse(namesss), DateFormat('yyyy-MM-dd').parse(daysed));
+        notification_string = "";
+        daysed = DateFormat('yyyy-MM-dd').format(days).toString();
+      }
     });
+    selectedEvents[days].forEach((element) {
+      if(notification_string == ""){
+        notification_string = notification_string + element.title;
+      }else{
+        notification_string = notification_string + ", " + element.title;
+      }
+    });
+    String namesss = DateFormat('yyyy-MM-dd').format(days).toString().replaceAll("-","");
+    showNotification(notification_string, int.parse(namesss), days);
+
 
     return Container(
         child: SingleChildScrollView(
