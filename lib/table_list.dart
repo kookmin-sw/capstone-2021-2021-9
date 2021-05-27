@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_demo_ver/Manage/event.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,6 +54,8 @@ class _TableList extends State<Tabless> {
   @override
   void initState() {
     selectedEvents = {};
+    selectedDay = DateTime.now();
+    focusedDay = DateTime.now();
     super.initState();
   }
 
@@ -165,7 +168,7 @@ class _TableList extends State<Tabless> {
 
     List<Container> massageWis = [];
     for(var message in snapshot){
-      final messageWi = taskList(message.data()['name'],message.data()['num'].toDate().toString(),context);
+      final messageWi = taskList(message.data()['name'],DateFormat("yyyy-MM-dd").format(message.data()['num'].toDate()),context);
       massageWis.add(messageWi);
     }
 
