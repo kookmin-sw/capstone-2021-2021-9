@@ -100,13 +100,18 @@ class _TableList extends State<Tabless> {
   }
 
   Widget taskList(String title, String description, BuildContext contexts) {
+    Color datecolor = Colors.white;
+    if(description.compareTo(DateFormat('yyyy-MM-dd').format(DateTime.now())) <= 0){
+      datecolor = Colors.redAccent;
+    }
+
     return Container(
       padding: EdgeInsets.only(top: 30),
       child: Row(
         children: <Widget>[
           Icon(
             CupertinoIcons.check_mark_circled_solid,
-            color: Colors.white,
+            color: datecolor,
             size: 30,
           ),
           Container(
@@ -167,47 +172,30 @@ class _TableList extends State<Tabless> {
     Size size = MediaQuery.of(context).size;
 
     List<Container> massageWis = [];
-    /*
-    FirebaseFirestore.instance
-        .collection('food')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        print(doc["foods"]);
-      });
-    });
-    for(var message in snapshot){
-      final messageWi = taskList(message.data()['Name'],message.data()['Name'],context);
-      print(message.data()['Name']+"hello");
-      massageWis.add(messageWi);
-
-    FirebaseFirestore.instance
-        .collection('food')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        print(doc["foods"]);
-      });
-    });
-    }
-
-    snapshot.forEach((doc) {
-      final messageWi = taskList(doc["foods"].toString(),doc["foods"].toString(),context);
-      massageWis.add(messageWi);
-    });
-    */
-
+    DateTime days;
+    selectedEvents = {};
     snapshot.forEach((doc) {
       final messageWi = taskList(doc["foods"]["Name"].toString(),doc["foods"]["ExpirationDate"].toString(),context);
       massageWis.add(messageWi);
-    });
 
+      days = DateFormat('yyyy-MM-dd').parse(doc["foods"]["ExpirationDate"]);
+
+      if (selectedEvents[days] != null) {
+        selectedEvents[days].add(Event(
+            title: doc["foods"]["Name"].toString(),id: doc.id));
+      } else {
+        selectedEvents[days] =
+        [Event(title: doc["foods"]["Name"].toString(),id: doc.id)];
+      }
+
+    });
 
     return Container(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              TableCalendar(
+                TableCalendar<Event>(
                 firstDay: DateTime.utc(1990),
                 lastDay: DateTime.utc(2030),
                 focusedDay: DateTime.now(),
@@ -216,7 +204,6 @@ class _TableList extends State<Tabless> {
                     selectedDay = selectDay;
                     focusedDay = focusDay;
                   });
-                  print(focusedDay);
                 },
                 selectedDayPredicate: (DateTime date){
                   return isSameDay(selectedDay,date);
@@ -237,8 +224,30 @@ class _TableList extends State<Tabless> {
                 ),
 
                 locale: 'ko-KR',
-                eventLoader: _getEventsfromDay,
-              ),..._getEventsfromDay(selectedDay).map((Event event) => ListTile(title: Text(event.title),)),
+                eventLoader: _getEventsfromDay
+              ),..._getEventsfromDay(DateFormat('yyyy-MM-dd').parse(selectedDay.toString())).map((Event event) => ListTile(title: Text(event.title),
+                onTap: () => showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("삭제하시겠습니까??"),
+                  actions: [
+                    TextButton(
+                      child: Text("취소"),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                    TextButton(
+                        child: Text("확인"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          FirebaseFirestore.instance.collection('food').doc(event.id).delete();
+                          print("good");
+                          setState(() {});
+                          return;
+                        }
+                    )
+                  ],
+                ),
+              ),)),
               SizedBox(height: size.height * 0.05),
               Container(
                 padding: EdgeInsets.only(left: 30),
@@ -316,6 +325,7 @@ class _TableList extends State<Tabless> {
                                   onPressed: () {
                                     if (_eventController.text.isEmpty) {
                                     } else {
+                                      /*
                                       if (selectedEvents[selectedDay] != null) {
                                         selectedEvents[selectedDay].add(Event(
                                             title: _eventController.text));
@@ -323,15 +333,13 @@ class _TableList extends State<Tabless> {
                                         selectedEvents[selectedDay] =
                                         [Event(title: _eventController.text)];
                                       }
+                                      */
                                     }
                                     Navigator.pop(context);
                                     if(_eventController.text.isNotEmpty){
-                                      /*massageWis.add(taskList(
-                                          _eventController.text,
-                                          selectedDay.toString(), context));*/
                                       FirebaseFirestore.instance.collection('food').add(
-                                          {'name': _eventController.text,
-                                            'num': selectedDay});
+                                          {'foods':{'ExpirationDate': DateFormat('yyyy-MM-dd').format(selectedDay),
+                                            'Name': _eventController.text}});
                                     }
                                     setState(() {
                                     });
