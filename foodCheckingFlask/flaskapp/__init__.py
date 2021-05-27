@@ -23,10 +23,9 @@ app.debug = True
 
 @app.route('/')
 def create_app():
+
     cred = credentials.Certificate("./test-db-56a02-firebase-adminsdk-k5oye-8d48a74410.json")
-    firebase_admin.initialize_app(cred, {
-        'storageBucket': 'test-db-56a02.appspot.com'
-    })
+    firebase_admin.initialize_app(cred, {'storageBucket': 'test-db-56a02.appspot.com'})
 
     config = {
         "apiKey": "AIzaSyDi2m9Z1mgTroxLc1plqJyH8-_Gf6G74-4",
@@ -38,6 +37,7 @@ def create_app():
         "addId": "1:795852762175:web:0b1c3cd84be6c44076dc8a",
         "measurementId": "G-F0R2FJZT9D"
     }
+
     firebase = pyrebase.initialize_app(config)
     storage = firebase.storage()
     path_on_cloud = "receipt.jpg"
