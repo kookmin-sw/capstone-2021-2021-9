@@ -171,7 +171,7 @@ class _TableList extends State<Tabless> {
 
   Widget _buildBody(BuildContext context){
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('food').orderBy('num',descending: false).snapshots(),
+      stream: FirebaseFirestore.instance.collection('food').orderBy('foods',descending: false).snapshots(),//.orderBy('num',descending: false)
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
         return _buildall(context, snapshot.data.docs);
@@ -183,10 +183,41 @@ class _TableList extends State<Tabless> {
     Size size = MediaQuery.of(context).size;
 
     List<Container> massageWis = [];
+    /*
+    FirebaseFirestore.instance
+        .collection('food')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc["foods"]);
+      });
+    });
     for(var message in snapshot){
-      final messageWi = taskList(message.data()['name'],DateFormat("yyyy-MM-dd").format(message.data()['num'].toDate()),context);
+      final messageWi = taskList(message.data()['Name'],message.data()['Name'],context);
+      print(message.data()['Name']+"hello");
       massageWis.add(messageWi);
+
+    FirebaseFirestore.instance
+        .collection('food')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc["foods"]);
+      });
+    });
     }
+
+    snapshot.forEach((doc) {
+      final messageWi = taskList(doc["foods"].toString(),doc["foods"].toString(),context);
+      massageWis.add(messageWi);
+    });
+    */
+
+    snapshot.forEach((doc) {
+      final messageWi = taskList(doc["foods"]["Name"].toString(),doc["foods"]["ExpirationDate"].toString(),context);
+      massageWis.add(messageWi);
+    });
+
 
     return Container(
         child: SingleChildScrollView(
