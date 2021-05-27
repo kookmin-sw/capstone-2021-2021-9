@@ -24,7 +24,7 @@
 
 ### 디자인 이미지
 
-기본 가이드                        |달력 및 리스트                       |검색                       |정보 확인                   |
+기본 가이드                        |달력, 리스트                       |검색                       |정보 확인                   |
 :--------------------------------:|:--------------------------------:|:-------------------------:|:-------------------------:|
 ![](/docs/design/guide.gif)        |![](/docs/design/calendar_list.gif)|![](/docs/design/search.gif)|![](/docs/design/status.gif)
 
@@ -43,7 +43,7 @@
 
 - 김민주(20163091)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_211047435_01.jpg" width="20%">
+![](/docs/team_img/KakaoTalk_20210404_211047435_01.jpg)
 
 ```
 Android 어플리케이션 개발
@@ -51,7 +51,7 @@ Android 어플리케이션 개발
 
 - 김찬민(20163101)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_210623886.jpg" width="20%">
+![](docs/team_img/KakaoTalk_20210404_210623886.jpg)
 
 ```
 IOS 어플리케이션 개발
@@ -59,11 +59,11 @@ IOS 어플리케이션 개발
 
 - 박하윤(20163111)
 
-<img src = "/docs/team_img/KakaoTalk_20210404_210423322.jpg" width="20%">
+![](/docs/team_img/KakaoTalk_20210404_210423322.jpg)
 
 ```
 핵심 기능(기술) 개발
 ```
 
-### 기타
+
 **관련 자료** -> [구글 드라이브 자료](https://drive.google.com/drive/folders/1V2mzOw_bEXJdegS4G252FB-DH29KiUCr?usp=sharing)
