@@ -7,6 +7,7 @@ import 'package:flutter_demo_ver/table_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:shared_preferences/shared_preferences.dart';
 
 FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -17,10 +18,11 @@ Future<void> main() async {
   var initializationSettings = InitializationSettings(android: androidSetting);
   await FlutterLocalNotificationsPlugin().initialize(initializationSettings);
 
+
   runApp(MyApp());
 }
 
-Future<void> showNotification() async{
+Future<void> showNotification(String helloo, int channelid) async{
   tz.initializeTimeZones();
   tz.setLocalLocation(tz.getLocation('Asia/Seoul'));
   var currentDateTime = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5));
@@ -30,19 +32,9 @@ Future<void> showNotification() async{
   var platform = NotificationDetails(android: android);
   //await FlutterLocalNotificationsPlugin().show(0, 'title', 'body', platform);
 
-  await FlutterLocalNotificationsPlugin().zonedSchedule(0,
-      'hello',
+  await FlutterLocalNotificationsPlugin().zonedSchedule(channelid,
+      helloo+channelid.toString(),
       'hie',
-      currentDateTime,
-      platform,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-      androidAllowWhileIdle: true);
-
-  currentDateTime = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 10));
-
-  await FlutterLocalNotificationsPlugin().zonedSchedule(1,
-      'hello2',
-      'hie2',
       currentDateTime,
       platform,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
@@ -84,7 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState(){
+    SharedPreferences.setMockInitialValues({});
     super.initState();
+  }
+
+  differentchannelnotification() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int counter = (prefs.getInt('counter') ?? 0) + 1;
+    print('Pressed $counter times.');
+    await prefs.setInt('counter', counter);
+
+    showNotification("asdgaskjl", counter);
   }
 
   Widget build(BuildContext context) {
