@@ -242,15 +242,18 @@ class _TableList extends State<Tabless> {
         daysed = DateFormat('yyyy-MM-dd').format(days).toString();
       }
     });
-    selectedEvents[days].forEach((element) {
-      if(notification_string == ""){
-        notification_string = notification_string + element.title;
-      }else{
-        notification_string = notification_string + ", " + element.title;
-      }
-    });
-    String namesss = DateFormat('yyyy-MM-dd').format(days).toString().replaceAll("-","");
-    showNotification(notification_string, int.parse(namesss), days);
+    if(selectedEvents[days] != null){
+      selectedEvents[days].forEach((element) {
+        if(notification_string == ""){
+          notification_string = notification_string + element.title;
+        }else{
+          notification_string = notification_string + ", " + element.title;
+        }
+      });
+      String namesss = DateFormat('yyyy-MM-dd').format(days).toString().replaceAll("-","");
+      showNotification(notification_string, int.parse(namesss), days);
+    }
+
 
 
     return Container(
@@ -292,8 +295,62 @@ class _TableList extends State<Tabless> {
                 onTap: () => showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("삭제하시겠습니까??"),
+                  title: Text("수정 - 삭제하시겠습니까??"),
                   actions: [
+                    TextButton(
+                      child: Text("수정"),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              AlertDialog(
+                                title: Text("수정할 내용"),
+                                content: TextFormField(
+                                  controller: _eventController,
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text("취소"),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                  TextButton(
+                                      child: Text("확인"),
+                                      onPressed: () {
+                                        if (_eventController.text
+                                            .isEmpty) {} else {
+                                          /*
+                                      if (selectedEvents[selectedDay] != null) {
+                                        selectedEvents[selectedDay].add(Event(
+                                            title: _eventController.text));
+                                      } else {
+                                        selectedEvents[selectedDay] =
+                                        [Event(title: _eventController.text)];
+                                      }
+                                      */
+                                        }
+                                        Navigator.pop(context);
+                                        if (_eventController.text.isNotEmpty) {
+                                          FirebaseFirestore.instance.collection(
+                                              'food').doc(event.id).update(
+                                              {
+                                                'foods': {
+                                                  'ExpirationDate': _eventController
+                                                      .text,
+                                                  'Name': event.title
+                                                }
+                                              }
+                                          );
+                                        }
+                                        setState(() {});
+                                        _eventController.clear();
+                                        return;
+                                      }
+                                  )
+                                ],
+                              ),
+                        );
+                      }
+                    ),
                     TextButton(
                       child: Text("취소"),
                       onPressed: () => Navigator.pop(context),
@@ -315,7 +372,7 @@ class _TableList extends State<Tabless> {
               Container(
                 padding: EdgeInsets.only(left: 30),
                 width: MediaQuery.of(context).size.width,
-                height: 100+(massageWis.length).toDouble()*100,
+                height: 200+(massageWis.length).toDouble()*100,//
                 decoration: BoxDecoration(
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.only(

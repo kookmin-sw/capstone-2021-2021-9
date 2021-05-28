@@ -28,7 +28,7 @@ Future<void> showNotification(String helloo, int channelid, DateTime date) async
 
   final now = tz.TZDateTime.now(tz.local);
   var currentDateTime = tz.TZDateTime(tz.local, date.year, date.month, 28,
-      13, 57);
+      13, 43);
 
   var android = AndroidNotificationDetails(
       'channelId', 'channelName', 'channelDescription');
